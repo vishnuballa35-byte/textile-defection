@@ -11,7 +11,7 @@ from backend.config import (
     PREDICTION_DIR,
 )
 
-from backend.routes.prediction import prediction_bp
+from backend.routes.prediction_render import prediction_bp
 
 
 # ============================================================

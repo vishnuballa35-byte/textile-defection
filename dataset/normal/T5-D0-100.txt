@@ -1,0 +1,1 @@
+This fabric image belongs to texture 5 and represents a defect-free fabric sample.

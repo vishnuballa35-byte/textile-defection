@@ -1,0 +1,1 @@
+This fabric image belongs to texture 14 and contains one defect region of type backfold, characterized as structural anomaly(ies), with medium extent, located the following positions of the fabric surface: top-left, top-center, center, and bottom-center.

@@ -1,0 +1,1 @@
+This fabric image belongs to texture 12 and contains one defect region of type bad edge, characterized as structural anomaly(ies), with large extent, located the following positions of the fabric surface: top-center, top-right, center, center-right, bottom-center, and bottom-right.

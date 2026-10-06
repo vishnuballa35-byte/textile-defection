@@ -1,0 +1,1 @@
+This fabric image belongs to texture 16 and contains one defect region of type broken warp, characterized as structural anomaly(ies), with small extent, located the following positions of the fabric surface: center.

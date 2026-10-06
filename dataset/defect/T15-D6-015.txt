@@ -1,0 +1,1 @@
+This fabric image belongs to texture 15 and contains multiple defect regions of type wrong draw, characterized as structural anomaly(ies), with medium extent, located the following positions of the fabric surface: top-left, top-center, top-right, center, center-right, bottom-left, and bottom-center.

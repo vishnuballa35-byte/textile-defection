@@ -1,0 +1,1 @@
+This fabric image belongs to texture 3 and contains one defect region of type line, characterized as structural anomaly(ies), with small extent, located the following positions of the fabric surface: top-right and bottom-center.

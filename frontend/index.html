@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Textile Defect Detection</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                TD
+            </div>
+
+            <div>
+
+                <h1>
+                    TextileVision
+                </h1>
+
+                <p>
+                    AI Textile Defect Detection
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            System Ready
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="container">
+
+
+        <!-- =================================================
+             PAGE TITLE
+        ================================================== -->
+
+        <section class="page-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    QUALITY INSPECTION
+                </span>
+
+                <h2>
+                    Textile Defect Detection
+                </h2>
+
+                <p>
+                    Upload a fabric image to detect defects,
+                    localize affected regions, and evaluate
+                    segmentation performance.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             UPLOAD SECTION
+        ================================================== -->
+
+        <section class="upload-card">
+
+
+            <div class="section-title">
+
+                <div>
+
+                    <h3>
+                        Fabric Image
+                    </h3>
+
+                    <p>
+                        Upload a JPG, JPEG or PNG image for inspection.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DROP ZONE -->
+
+            <div
+                id="dropZone"
+                class="drop-zone"
+            >
+
+                <div class="upload-icon">
+                    ↑
+                </div>
+
+                <h3>
+                    Drag &amp; Drop Fabric Image
+                </h3>
+
+                <p>
+                    or select an image from your computer
+                </p>
+
+
+                <label
+                    for="imageInput"
+                    class="browse-button"
+                >
+                    Choose Image
+                </label>
+
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/png,image/jpeg,image/jpg"
+                    hidden
+                >
+
+
+                <div
+                    id="fileName"
+                    class="file-name"
+                >
+                    No image selected
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 IMAGE PREVIEW
+            ================================================== -->
+
+            <div
+                id="previewContainer"
+                class="preview-container hidden"
+            >
+
+                <div class="preview-header">
+
+                    <div>
+
+                        <h3>
+                            Selected Image
+                        </h3>
+
+                        <span id="imageInfo">
+                            Ready for analysis
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        id="removeImage"
+                        class="remove-button"
+                        type="button"
+                    >
+                        Remove
+                    </button>
+
+                </div>
+
+
+                <div class="preview-image-wrapper">
+
+                    <img
+                        id="imagePreview"
+                        src=""
+                        alt="Fabric preview"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ANALYZE BUTTON
+            ================================================== -->
+
+            <button
+                id="analyzeButton"
+                class="analyze-button"
+                type="button"
+                disabled
+            >
+                Analyze Fabric
+            </button>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             RESULTS
+        ================================================== -->
+
+        <section
+            id="resultsSection"
+            class="results-section hidden"
+        >
+
+
+            <!-- =================================================
+                 RESULT HEADER
+            ================================================== -->
+
+            <div class="results-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        INSPECTION RESULT
+                    </span>
+
+                    <h2>
+                        Analysis Results
+                    </h2>
+
+                </div>
+
+
+                <!-- FINAL DECISION -->
+
+                <div
+                    id="predictionBadge"
+                    class="prediction-badge"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FINAL DECISION EXPLANATION
+            ================================================== -->
+
+            <div class="final-decision-card">
+
+                <div class="metric-label">
+                    Final Inspection Decision
+                </div>
+
+                <div
+                    id="inspectionStatus"
+                    class="metric-value"
+                >
+                    —
+                </div>
+
+                <div class="metric-description">
+                    Decision based on CNN and LBP + SVM classification
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SUMMARY CARDS
+            ================================================== -->
+
+            <div class="summary-grid">
+
+
+                <!-- CNN -->
+
+                <div class="metric-card">
+
+                    <div class="metric-label">
+                        CNN Classification
+                    </div>
+
+
+                    <div
+                        id="cnnPrediction"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+
+                    <div class="metric-description">
+                        MobileNetV2
+                    </div>
+
+                </div>
+
+
+
+                <!-- CNN CONFIDENCE -->
+
+                <div class="metric-card">
+
+                    <div class="metric-label">
+                        CNN Confidence
+                    </div>
+
+
+                    <div
+                        id="confidenceValue"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            id="confidenceBar"
+                            class="progress-fill"
+                        >
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LBP + SVM -->
+
+                <div class="metric-card">
+
+                    <div class="metric-label">
+                        LBP + SVM
+                    </div>
+
+
+                    <div
+                        id="svmPrediction"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+
+                    <div class="metric-description">
+                        Traditional ML baseline
+                    </div>
+
+                </div>
+
+
+
+                <!-- FINAL STATUS -->
+
+                <div class="metric-card">
+
+                    <div class="metric-label">
+                        Inspection Status
+                    </div>
+
+
+                    <div
+                        id="inspectionStatusCard"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+
+                    <div class="metric-description">
+                        Automated quality inspection
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 VISUALIZATION
+            ================================================== -->
+
+            <div class="visualization-section">
+
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h3>
+                            Defect Visualization
+                        </h3>
+
+                        <p>
+                            Compare the original image with
+                            model-generated localization.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="image-grid">
+
+
+                    <!-- ORIGINAL IMAGE -->
+
+                    <div class="image-card">
+
+                        <div class="image-card-header">
+
+                            <span>
+                                Original Image
+                            </span>
+
+                        </div>
+
+
+                        <div class="result-image-container">
+
+                            <img
+                                id="originalResultImage"
+                                src=""
+                                alt="Original fabric image"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- GRAD-CAM -->
+
+                    <div class="image-card">
+
+                        <div class="image-card-header">
+
+                            <span>
+                                Grad-CAM
+                            </span>
+
+                            <span class="technique-tag">
+                                Localization
+                            </span>
+
+                        </div>
+
+
+                        <div class="result-image-container">
+
+                            <img
+                                id="gradcamImage"
+                                src=""
+                                alt="Grad-CAM visualization"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- U-NET -->
+
+                    <div class="image-card">
+
+                        <div class="image-card-header">
+
+                            <span>
+                                U-Net Segmentation
+                            </span>
+
+                            <span class="technique-tag">
+                                Pixel Mask
+                            </span>
+
+                        </div>
+
+
+                        <div class="result-image-container">
+
+                            <img
+                                id="segmentationImage"
+                                src=""
+                                alt="U-Net segmentation result"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SEGMENTATION METRICS
+            ================================================== -->
+
+            <div class="segmentation-section">
+
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h3>
+                            Segmentation Performance
+                        </h3>
+
+                        <p>
+                            Evaluation of the predicted defect mask.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="segmentation-metrics">
+
+
+                    <!-- IoU -->
+
+                    <div class="large-metric">
+
+                        <span>
+                            IoU
+                        </span>
+
+
+                        <strong id="iouValue">
+                            —
+                        </strong>
+
+
+                        <p>
+                            Intersection over Union
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- Dice -->
+
+                    <div class="large-metric">
+
+                        <span>
+                            Dice
+                        </span>
+
+
+                        <strong id="diceValue">
+                            —
+                        </strong>
+
+
+                        <p>
+                            Dice Similarity Coefficient
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- Defect Area -->
+
+                    <div class="large-metric">
+
+                        <span>
+                            Defect Area
+                        </span>
+
+
+                        <strong id="defectArea">
+                            —
+                        </strong>
+
+
+                        <p>
+                            Percentage of detected region
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MODEL COMPARISON - REAL TIME
+            ================================================== -->
+
+            <div class="comparison-section">
+
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h3>
+                            Model Comparison
+                        </h3>
+
+                        <p>
+                            Comparison between deep learning
+                            and traditional machine learning.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="comparison-table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Method
+                                </th>
+
+                                <th>
+                                    Task
+                                </th>
+
+                                <th>
+                                    Prediction
+                                </th>
+
+                                <th>
+                                    Confidence
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                            <!-- MOBILENETV2 -->
+
+                            <tr>
+
+                                <td>
+                                    <strong>
+                                        MobileNetV2
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    Classification
+                                </td>
+
+                                <td id="tableCNN">
+                                    —
+                                </td>
+
+                                <td id="tableConfidence">
+                                    —
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        id="tableCNNStatus"
+                                        class="table-status"
+                                    >
+                                        Ready
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <!-- LBP + SVM -->
+
+                            <tr>
+
+                                <td>
+                                    <strong>
+                                        LBP + SVM
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    Classification
+                                </td>
+
+                                <td id="tableSVM">
+                                    —
+                                </td>
+
+                                <td id="tableSVMConfidence">
+                                    —
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        id="tableSVMStatus"
+                                        class="table-status"
+                                    >
+                                        Ready
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <!-- U-NET -->
+
+                            <tr>
+
+                                <td>
+                                    <strong>
+                                        U-Net
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    Segmentation
+                                </td>
+
+                                <td>
+                                    Defect Mask
+                                </td>
+
+                                <td id="tableDice">
+                                    —
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        id="tableUnetStatus"
+                                        class="table-status"
+                                    >
+                                        Ready
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EVALUATION DASHBOARD
+            ================================================== -->
+
+            <section
+                class="evaluation-section"
+                id="evaluation"
+            >
+
+
+                <!-- EVALUATION HEADER -->
+
+                <div class="section-header">
+
+                    <span class="eyebrow">
+                        PERFORMANCE EVALUATION
+                    </span>
+
+                    <h2>
+                        Model Evaluation
+                    </h2>
+
+                    <p>
+                        Performance comparison of the classification
+                        and segmentation models used in the textile
+                        defect detection system.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     MODEL PERFORMANCE
+                ================================================== -->
+
+                <div class="evaluation-card">
+
+                    <h3>
+                        Model Performance Comparison
+                    </h3>
+
+
+                    <div class="table-container">
+
+                        <table class="evaluation-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Model
+                                    </th>
+
+                                    <th>
+                                        Accuracy
+                                    </th>
+
+                                    <th>
+                                        Precision
+                                    </th>
+
+                                    <th>
+                                        Recall
+                                    </th>
+
+                                    <th>
+                                        F1 Score
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            MobileNetV2
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        94.99%
+                                    </td>
+
+                                    <td>
+                                        71.77%
+                                    </td>
+
+                                    <td>
+                                        75.42%
+                                    </td>
+
+                                    <td>
+                                        —
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            LBP + SVM
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        72.91%
+                                    </td>
+
+                                    <td>
+                                        21.21%
+                                    </td>
+
+                                    <td>
+                                        71.19%
+                                    </td>
+
+                                    <td>
+                                        33.00%
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            U-Net
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        —
+                                    </td>
+
+                                    <td>
+                                        —
+                                    </td>
+
+                                    <td>
+                                        —
+                                    </td>
+
+                                    <td>
+                                        —
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     U-NET EVALUATION
+                ================================================== -->
+
+                <div class="evaluation-card">
+
+                    <h3>
+                        U-Net Segmentation Evaluation
+                    </h3>
+
+
+                    <div class="metric-grid">
+
+
+                        <!-- VALIDATION IOU -->
+
+                        <div class="metric-box">
+
+                            <span class="metric-label">
+                                Validation IoU
+                            </span>
+
+                            <span class="metric-number">
+                                21.45%
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- VALIDATION DICE -->
+
+                        <div class="metric-box">
+
+                            <span class="metric-label">
+                                Validation Dice
+                            </span>
+
+                            <span class="metric-number">
+                                28.62%
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- REAL TIME IOU -->
+
+                        <div class="metric-box">
+
+                            <span class="metric-label">
+                                Real-Time IoU
+                            </span>
+
+                            <span
+                                id="evaluation-iou"
+                                class="metric-number"
+                            >
+                                N/A
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- REAL TIME DICE -->
+
+                        <div class="metric-box">
+
+                            <span class="metric-label">
+                                Real-Time Dice
+                            </span>
+
+                            <span
+                                id="evaluation-dice"
+                                class="metric-number"
+                            >
+                                N/A
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- DEFECT AREA -->
+
+                        <div class="metric-box">
+
+                            <span class="metric-label">
+                                Defect Area
+                            </span>
+
+                            <span
+                                id="evaluation-area"
+                                class="metric-number"
+                            >
+                                N/A
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <p class="evaluation-note">
+                        Real-time IoU and Dice are calculated only when
+                        a matching ground-truth defect mask is available.
+                        Defect area is calculated from the predicted U-Net mask.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CONFUSION MATRIX
+                ================================================== -->
+
+                <div class="evaluation-card">
+
+                    <h3>
+                        Classification Confusion Matrix
+                    </h3>
+
+
+                    <p class="evaluation-description">
+                        Evaluation results from the classification
+                        test dataset.
+                    </p>
+
+
+                    <div class="confusion-wrapper">
+
+                        <table class="confusion-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th></th>
+
+                                    <th>
+                                        Predicted Normal
+                                    </th>
+
+                                    <th>
+                                        Predicted Defect
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <th>
+                                        Actual Normal
+                                    </th>
+
+                                    <td>
+                                        847
+                                    </td>
+
+                                    <td>
+                                        312
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <th>
+                                        Actual Defect
+                                    </th>
+
+                                    <td>
+                                        34
+                                    </td>
+
+                                    <td>
+                                        84
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     KEY FINDINGS
+                ================================================== -->
+
+                <div class="evaluation-card">
+
+                    <h3>
+                        Key Findings
+                    </h3>
+
+
+                    <div class="findings-list">
+
+
+                        <!-- FINDING 1 -->
+
+                        <div class="finding">
+
+                            <span class="finding-number">
+                                01
+                            </span>
+
+                            <div>
+
+                                <h4>
+                                    Best Classification Accuracy
+                                </h4>
+
+                                <p>
+                                    MobileNetV2 achieved 94.99%
+                                    classification accuracy on the
+                                    evaluation dataset.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- FINDING 2 -->
+
+                        <div class="finding">
+
+                            <span class="finding-number">
+                                02
+                            </span>
+
+                            <div>
+
+                                <h4>
+                                    Traditional ML Baseline
+                                </h4>
+
+                                <p>
+                                    LBP + SVM achieved 72.91% accuracy
+                                    and provides a traditional
+                                    computer-vision baseline.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- FINDING 3 -->
+
+                        <div class="finding">
+
+                            <span class="finding-number">
+                                03
+                            </span>
+
+                            <div>
+
+                                <h4>
+                                    Defect Localization
+                                </h4>
+
+                                <p>
+                                    U-Net generates a pixel-level
+                                    segmentation mask that identifies
+                                    the suspected defect region.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- FINDING 4 -->
+
+                        <div class="finding">
+
+                            <span class="finding-number">
+                                04
+                            </span>
+
+                            <div>
+
+                                <h4>
+                                    Real-Time Evaluation
+                                </h4>
+
+                                <p>
+                                    When a matching ground-truth mask
+                                    exists, IoU and Dice are calculated
+                                    for the uploaded image.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <p>
+            TextileVision — AI-Based Textile Quality Inspection
+        </p>
+
+        <span>
+            MobileNetV2 • Grad-CAM • U-Net • LBP + SVM
+        </span>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

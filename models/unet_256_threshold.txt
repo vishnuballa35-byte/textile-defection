@@ -1,0 +1,9 @@
+Best threshold: 0.05
+Best validation IoU: 15.0398%
+Dice at best IoU threshold: 22.3752%
+Best Dice threshold: 0.05
+Best validation Dice: 22.3752%
+IoU at best Dice threshold: 15.0398%
+Image size: (256, 256)
+Training images: 501
+Validation images: 89

@@ -1,0 +1,1 @@
+This fabric image belongs to texture 1 and contains multiple defect regions of type dirty, characterized as non-structural anomaly(ies), with small extent, located the following positions of the fabric surface: center, bottom-left, and bottom-center.

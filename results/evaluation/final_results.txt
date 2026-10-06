@@ -1,0 +1,27 @@
+TEXTILE DEFECT DETECTION
+FINAL MODEL EVALUATION RESULTS
+============================================================
+
+1. MobileNetV2 CLASSIFICATION
+----------------------------------------
+Accuracy : 93.11%
+Precision: 61.36%
+Recall   : 68.64%
+F1 Score : 64.80%
+
+2. LBP + SVM CLASSIFICATION
+----------------------------------------
+Accuracy : 72.91%
+Precision: 21.21%
+Recall   : 71.19%
+F1 Score : 32.68%
+
+3. U-NET SEGMENTATION
+----------------------------------------
+Mean IoU    : 25.61%
+Mean Dice   : 33.86%
+Median IoU  : 14.98%
+Median Dice : 26.05%
+
+============================================================
+Evaluation completed.

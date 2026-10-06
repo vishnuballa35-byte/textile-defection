@@ -3,7 +3,7 @@ from pathlib import Path
 import cv2
 import joblib
 import numpy as np
-import tensorflow as tf
+from backend.localization.gradcam import generate_gradcam
 
 from PIL import Image
 from flask import Blueprint, jsonify, request

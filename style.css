@@ -1,0 +1,1377 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #f5f7fa;
+    --surface: #ffffff;
+    --border: #e2e6eb;
+
+    --text: #17202a;
+    --muted: #6b7280;
+
+    --primary: #1f4d6b;
+    --primary-dark: #16394f;
+
+    --success: #16805c;
+    --danger: #c0392b;
+
+    --shadow:
+        0 8px 30px rgba(20, 40, 60, 0.07);
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.topbar {
+    height: 76px;
+
+    background: var(--surface);
+
+    border-bottom:
+        1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 5%;
+}
+
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+
+    background: var(--primary);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.brand h1 {
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.brand p {
+    font-size: 12px;
+
+    color: var(--muted);
+
+    margin-top: 2px;
+}
+
+
+.system-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 13px;
+
+    color: var(--muted);
+}
+
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+
+    background: var(--success);
+
+    border-radius: 50%;
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.container {
+    width: min(1200px, 92%);
+
+    margin: 0 auto;
+
+    padding: 50px 0 70px;
+}
+
+
+/* =====================================================
+   PAGE HEADING
+===================================================== */
+
+.page-heading {
+    margin-bottom: 30px;
+}
+
+
+.eyebrow {
+    display: inline-block;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+
+    color: var(--primary);
+
+    margin-bottom: 9px;
+}
+
+
+.page-heading h2 {
+    font-size: 34px;
+
+    line-height: 1.2;
+
+    margin-bottom: 10px;
+}
+
+
+.page-heading p {
+    max-width: 650px;
+
+    color: var(--muted);
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.upload-card,
+.results-section {
+    background: var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.upload-card {
+    padding: 30px;
+
+    margin-bottom: 35px;
+}
+
+
+.section-title {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 22px;
+}
+
+
+.section-title h3 {
+    font-size: 18px;
+
+    margin-bottom: 5px;
+}
+
+
+.section-title p {
+    font-size: 13px;
+
+    color: var(--muted);
+}
+
+
+/* =====================================================
+   DROP ZONE
+===================================================== */
+
+.drop-zone {
+    border:
+        2px dashed #cbd3db;
+
+    border-radius: 12px;
+
+    padding: 45px 20px;
+
+    text-align: center;
+
+    transition: 0.2s;
+
+    background: #fafbfc;
+}
+
+
+.drop-zone.dragover {
+    border-color: var(--primary);
+
+    background: #f1f6f9;
+}
+
+
+.upload-icon {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    background: #eaf0f4;
+
+    color: var(--primary);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 15px;
+
+    font-size: 26px;
+
+    font-weight: 700;
+}
+
+
+.drop-zone h3 {
+    font-size: 17px;
+
+    margin-bottom: 6px;
+}
+
+
+.drop-zone p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+
+.browse-button {
+    display: inline-block;
+
+    padding: 11px 20px;
+
+    border-radius: 7px;
+
+    background: var(--primary);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+
+.browse-button:hover {
+    background: var(--primary-dark);
+}
+
+
+.file-name {
+    margin-top: 14px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   PREVIEW
+===================================================== */
+
+.preview-container {
+    margin-top: 25px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+.preview-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px 18px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.preview-header h3 {
+    font-size: 14px;
+
+    margin-bottom: 3px;
+}
+
+
+.preview-header span {
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+.preview-image-wrapper {
+    background: #f4f5f6;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    max-height: 450px;
+}
+
+
+.preview-image-wrapper img {
+    max-width: 100%;
+
+    max-height: 400px;
+
+    object-fit: contain;
+
+    border-radius: 5px;
+}
+
+
+.remove-button {
+    border: none;
+
+    background: transparent;
+
+    color: var(--danger);
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   ANALYZE BUTTON
+===================================================== */
+
+.analyze-button {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.analyze-button:hover:not(:disabled) {
+    background: var(--primary-dark);
+}
+
+
+.analyze-button:disabled {
+    background: #b8c0c7;
+
+    cursor: not-allowed;
+}
+
+
+/* =====================================================
+   RESULTS
+===================================================== */
+
+.results-section {
+    padding: 30px;
+}
+
+
+.results-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+
+.results-header h2 {
+    font-size: 25px;
+}
+
+
+.prediction-badge {
+    padding: 10px 18px;
+
+    border-radius: 20px;
+
+    background: #eaf7f2;
+
+    color: var(--success);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.prediction-badge.defect {
+    background: #fdeceb;
+
+    color: var(--danger);
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 35px;
+}
+
+
+.metric-card {
+    border:
+        1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 20px;
+}
+
+
+.metric-label {
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    margin-bottom: 10px;
+}
+
+
+.metric-value {
+    font-size: 23px;
+
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+
+.metric-description {
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   CONFIDENCE
+===================================================== */
+
+.progress-bar {
+    width: 100%;
+
+    height: 6px;
+
+    background: #edf0f2;
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    margin-top: 10px;
+}
+
+
+.progress-fill {
+    width: 0%;
+
+    height: 100%;
+
+    background: var(--primary);
+
+    transition: width 0.5s ease;
+}
+
+
+/* =====================================================
+   IMAGE VISUALIZATION
+===================================================== */
+
+.visualization-section {
+    margin-bottom: 35px;
+}
+
+
+.image-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+
+.image-card {
+    border:
+        1px solid var(--border);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+.image-card-header {
+    padding: 13px 15px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom:
+        1px solid var(--border);
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.technique-tag {
+    font-size: 10px;
+
+    color: var(--primary);
+
+    background: #edf3f7;
+
+    padding: 4px 7px;
+
+    border-radius: 4px;
+}
+
+
+.result-image-container {
+    height: 260px;
+
+    background: #f5f6f7;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.result-image-container img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+/* =====================================================
+   SEGMENTATION
+===================================================== */
+
+.segmentation-section {
+    margin-bottom: 35px;
+}
+
+
+.segmentation-metrics {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+
+.large-metric {
+    text-align: center;
+
+    padding: 25px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 10px;
+}
+
+
+.large-metric span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    margin-bottom: 8px;
+}
+
+
+.large-metric strong {
+    display: block;
+
+    font-size: 30px;
+
+    color: var(--primary);
+
+    margin-bottom: 5px;
+}
+
+
+.large-metric p {
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   MODEL COMPARISON TABLE
+===================================================== */
+
+.comparison-section {
+    margin-bottom: 35px;
+}
+
+
+.comparison-table-wrapper {
+    overflow-x: auto;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 10px;
+}
+
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 13px;
+}
+
+
+th {
+    text-align: left;
+
+    background: #f7f8f9;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+
+th,
+td {
+    padding: 14px 16px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+
+.table-status {
+    color: var(--success);
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   EVALUATION DASHBOARD
+===================================================== */
+
+.evaluation-section {
+    width: 100%;
+
+    margin-top: 50px;
+
+    padding-top: 10px;
+}
+
+
+.section-header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.section-header h2 {
+    font-size: 27px;
+
+    margin-bottom: 10px;
+}
+
+
+.section-header p {
+    max-width: 750px;
+
+    margin: 0 auto;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   EVALUATION CARDS
+===================================================== */
+
+.evaluation-card {
+    margin-bottom: 25px;
+
+    padding: 25px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--surface);
+}
+
+
+.evaluation-card h3 {
+    font-size: 18px;
+
+    margin-bottom: 18px;
+}
+
+
+.evaluation-description {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =====================================================
+   EVALUATION TABLE
+===================================================== */
+
+.table-container {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+}
+
+
+.evaluation-table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+.evaluation-table th {
+    text-align: center;
+
+    background: #f7f8f9;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+
+.evaluation-table td {
+    text-align: center;
+
+    font-size: 13px;
+}
+
+
+.evaluation-table th,
+.evaluation-table td {
+    padding: 14px 16px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.evaluation-table th:first-child,
+.evaluation-table td:first-child {
+    text-align: left;
+}
+
+
+.evaluation-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.evaluation-table tbody tr:hover {
+    background: #fafbfc;
+}
+
+
+/* =====================================================
+   EVALUATION METRIC GRID
+===================================================== */
+
+.metric-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 15px;
+}
+
+
+.metric-box {
+    padding: 20px;
+
+    text-align: center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 10px;
+
+    background: #fafbfc;
+
+    transition: 0.2s;
+}
+
+
+.metric-box:hover {
+    border-color: #cbd5dc;
+
+    transform: translateY(-2px);
+}
+
+
+.metric-label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+
+.metric-number {
+    display: block;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    color: var(--primary);
+}
+
+
+.evaluation-note {
+    margin-top: 18px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   CONFUSION MATRIX
+===================================================== */
+
+.confusion-wrapper {
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: 0 auto;
+}
+
+
+.confusion-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+
+    overflow: hidden;
+}
+
+
+.confusion-table th,
+.confusion-table td {
+    padding: 16px;
+
+    text-align: center;
+
+    border-bottom:
+        1px solid var(--border);
+
+    border-right:
+        1px solid var(--border);
+}
+
+
+.confusion-table thead th {
+    background: #f7f8f9;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+}
+
+
+.confusion-table tbody th {
+    background: #fafbfc;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    text-transform: none;
+}
+
+
+.confusion-table td {
+    font-size: 17px;
+
+    font-weight: 700;
+
+    color: var(--primary);
+
+    background: var(--surface);
+}
+
+
+.confusion-table tr:last-child th,
+.confusion-table tr:last-child td {
+    border-bottom: none;
+}
+
+
+.confusion-table th:last-child,
+.confusion-table td:last-child {
+    border-right: none;
+}
+
+
+/* =====================================================
+   KEY FINDINGS
+===================================================== */
+
+.findings-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+
+.finding {
+    display: flex;
+
+    gap: 18px;
+
+    align-items: flex-start;
+
+    padding-bottom: 18px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.finding:last-child {
+    padding-bottom: 0;
+
+    border-bottom: none;
+}
+
+
+.finding-number {
+    min-width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #edf3f7;
+
+    color: var(--primary);
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.finding h4 {
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+
+.finding p {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    text-align: center;
+
+    padding: 30px 20px;
+
+    border-top:
+        1px solid var(--border);
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+footer span {
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   UTILITIES
+===================================================== */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================================
+   RESPONSIVE - TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .metric-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE - 900px
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .summary-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .metric-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE - MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+
+    .system-status {
+        display: none;
+    }
+
+
+    .container {
+        width: 94%;
+
+        padding-top: 30px;
+    }
+
+
+    .page-heading h2 {
+        font-size: 27px;
+    }
+
+
+    .upload-card,
+    .results-section {
+        padding: 20px;
+    }
+
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .segmentation-metrics {
+        grid-template-columns: 1fr;
+    }
+
+
+    .results-header {
+        align-items: flex-start;
+
+        gap: 15px;
+
+        flex-direction: column;
+    }
+
+
+    .evaluation-section {
+        margin-top: 35px;
+    }
+
+
+    .evaluation-card {
+        padding: 18px;
+    }
+
+
+    .section-header h2 {
+        font-size: 23px;
+    }
+
+
+    .metric-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .evaluation-table th,
+    .evaluation-table td {
+        padding: 10px 8px;
+
+        font-size: 11px;
+    }
+
+
+    .confusion-table th,
+    .confusion-table td {
+        padding: 10px 7px;
+
+        font-size: 11px;
+    }
+
+
+    .confusion-table td {
+        font-size: 15px;
+    }
+
+
+    .finding {
+        gap: 12px;
+    }
+
+
+    .finding-number {
+        min-width: 34px;
+
+        height: 34px;
+
+        font-size: 10px;
+    }
+
+}
